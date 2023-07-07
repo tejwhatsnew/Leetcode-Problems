@@ -22,7 +22,11 @@ public:
             for(int c = 0; c < col.size(); c++)
             {
                 if(row[r]==1 or col[c]==1)
-                    matrix[r][c]=0;
+                {
+                    if(matrix[r][c]!=0)
+                        matrix[r][c]=0;
+                }
+                    
             }    
         }
     }
