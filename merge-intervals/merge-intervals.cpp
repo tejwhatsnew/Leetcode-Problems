@@ -6,22 +6,11 @@ public:
         vector<vector<int>> res;
         for(int i = 0; i < n; i++)
         {
-            int start = intervals[i][0];
-            int end = intervals[i][1];
+            if(res.empty() or res.back()[1] < intervals[i][0])
+                res.push_back(intervals[i]);
 
-            if(!res.empty() && end <= res.back()[1])
-                continue;
-            
-            for(int j =i + 1; j < n; j++)
-            {
-                if(intervals[j][0] <= end)
-                {
-                    end = max(end, intervals[j][1]);
-                }
-                else
-                    break;
-            }
-            res.push_back({start, end});
+            else
+                res.back()[1] = max(res.back()[1], intervals[i][1]);
         }
 
         return res;
