@@ -1,21 +1,35 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int n = nums.size();
+        int cnt = 0;
+        int  ele;
 
-        unordered_map<int,int> hash;
-        
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < nums.size(); i++)
         {
-            hash[nums[i]] += 1;
+            if(cnt == 0)
+            {
+                cnt = 1;
+                ele = nums[i];
+            }
+            else if(ele == nums[i])
+            {
+                cnt++;
+            }
+            else
+            {
+                cnt--;
+            }
         }
 
-        for(auto i : hash)
+        cnt = 0;
+        for(int i = 0; i < nums.size(); i++)
         {
-            if(i.second > (n/2))
-                return i.first;
+            if(nums[i] == ele) cnt++;
         }
 
+        if(cnt > (nums.size()/2))
+            return ele;
+            
         return 0;
     }
 };
