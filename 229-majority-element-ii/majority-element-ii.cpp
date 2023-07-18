@@ -1,26 +1,20 @@
+#include <bits/stdc++.h>
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
         vector<int> list;
-
+        map<int,int> hash;
+        int mini = int(nums.size()/3) + 1;
+        
         for(int i = 0; i < nums.size(); i++)
         {
-            int cnt = 0;
-            if(list.size() == 0 || list[0] != nums[i])
-            {
-                for(int j = 0; j < nums.size(); j++)
-                {
-                    if(nums[i] == nums[j])
-                        cnt++;
-                }
+            hash[nums[i]]++;
 
-                if(cnt > (nums.size()/3))
-                    list.push_back(nums[i]);
-
-                if(list.size() == 2) break;
-            }
+            if(hash[nums[i]] == mini)
+                list.push_back(nums[i]);
+            
+            if(list.size() == 2) break;
         }
-
         return list;
     }
 };
