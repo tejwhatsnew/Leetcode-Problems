@@ -10,6 +10,7 @@ public:
                 {
                     temp.push_back(i);
                     temp.push_back(j);
+                    return temp;
                 }
             }
         }
