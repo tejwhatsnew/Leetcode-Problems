@@ -3,20 +3,16 @@ public:
     int lengthOfLongestSubstring(string s) {
         if(s.size() == 0) return 0;
         int count = 0;
-        unordered_set<int>set;
-        int l = 0;
-        for(int r = 0; r < s.length(); r++)
+        unordered_map<char,int>umap;
+        int l = 0, r = 0;
+        while(r < s.length())
         {
-            if(set.find(s[r]) != set.end())
-            {
-                while(l < r && set.find(s[r]) != set.end())
-                {
-                    set.erase(s[l]);
-                    l++;
-                }
-            }
-            set.insert(s[r]);
+            if(umap.find(s[r]) != umap.end()) l = max(umap[s[r]] + 1, l);
+
+            umap[s[r]] = r;
+
             count = max(count, r - l + 1);
+            r++;
         }
         return count;
     }
