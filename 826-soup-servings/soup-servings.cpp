@@ -30,7 +30,7 @@ public:
     }
     double soupServings(int n) {
 
-        if(n >= 4000)
+        if(n >= 4500)
             return 1;
 
         dummy.resize(n+1, vector<double>(n+1, -1.0));
