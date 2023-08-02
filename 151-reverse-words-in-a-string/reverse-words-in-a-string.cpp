@@ -1,27 +1,35 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        stack<string> st;
-        string res, word;
-        for(char i : s)
-        {
-            if(i != ' ') word += i;
-            else if(!word.empty())
-            {
-                st.push(word);
-                word="";
-            }
-        }
-        
-        if(!word.empty()) st.push(word);
+        int left=0;
+        int right = s.length() - 1;
 
-        res="";
-        while(!st.empty())
+        string ans = "", temp = "";
+
+        while(s[left] == ' ') left++;
+
+        while(s[right] == ' ') right--;
+
+        while(left <= right)
         {
-            res += st.top() + " ";
-            st.pop();
+            if(s[left] != ' ') temp += s[left];
+            else
+            {
+                if(s[left-1] == ' ')
+                {
+                    left++;
+                    continue;
+                }
+                else
+                {
+                    ans = temp + " " + ans;
+                    temp = "";
+                }
+            }
+            left++;
         }
-        if(!res.empty()) res.pop_back();
-        return res;
+        ans = temp + " " + ans;
+        ans.erase(ans.begin() + ans.length() - 1); // to remove the extra space at the end
+        return ans;
     }
 };
