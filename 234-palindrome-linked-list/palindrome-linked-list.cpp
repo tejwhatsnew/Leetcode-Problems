@@ -39,14 +39,12 @@ public:
             slow = slow->next;
 
         slow = reverseList(slow);
-        // slow = slow->next;
-        fast = head;
 
         while(slow != NULL)
         {
-            if(fast->val != slow->val) return false;
+            if(head->val != slow->val) return false;
 
-            fast = fast->next;
+            head = head->next;
             slow = slow->next;
         }
 
