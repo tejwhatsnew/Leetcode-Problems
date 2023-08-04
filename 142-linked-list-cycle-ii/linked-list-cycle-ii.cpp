@@ -9,15 +9,24 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        unordered_set<ListNode*> mapping;
+        if(head == NULL || head->next == NULL) return NULL;
 
-        while(head)
+        ListNode *fast = head, *slow = head;
+
+        while(fast->next != NULL && fast->next->next != NULL)
         {
-            if(mapping.find(head) != mapping.end()) return head;
-
-            mapping.insert(head);
-
-            head = head->next;
+            fast = fast->next->next;
+            slow = slow->next;
+            if(fast == slow)
+            {
+                fast = head;
+                while(slow != fast)
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
         }
 
         return NULL;
