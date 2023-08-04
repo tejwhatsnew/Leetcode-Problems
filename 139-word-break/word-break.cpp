@@ -1,29 +1,29 @@
 class Solution {
 private:
-    bool helpWB(string s, unordered_set<string>& st, int i, vector<bool>& dp)
-    {
-        if(i == s.size()) return true;
+    // bool helpWB(string s, unordered_set<string>& st, int i, vector<bool>& dp)
+    // {
+    //     if(i == s.size()) return true;
 
-        if(dp[i] != false) return dp[i];
+    //     if(dp[i] != false) return dp[i];
 
-        string temp;
+    //     string temp;
 
-        for(int j = i; j < s.length(); j++)
-        {
-            temp += s[j];
+    //     for(int j = i; j < s.length(); j++)
+    //     {
+    //         temp += s[j];
 
-            if(st.find(temp) != st.end())
-            {
-                if(helpWB(s, st, j+1, dp)) 
-                {
-                    return dp[i] = true;
-                    break;
-                }
-            }
-        }
+    //         if(st.find(temp) != st.end())
+    //         {
+    //             if(helpWB(s, st, j+1, dp)) 
+    //             {
+    //                 return dp[i] = true;
+    //                 break;
+    //             }
+    //         }
+    //     }
 
-        return dp[i] = false;
-    }
+    //     return dp[i] = false;
+    // }
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
         unordered_set<string> st;
