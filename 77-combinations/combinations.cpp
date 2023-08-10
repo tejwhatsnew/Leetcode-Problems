@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void backtrack(std::vector<std::vector<int>>& combinations, std::vector<int>& current_combination, int start, int n, int k) {
+    void backtrack(vector<std::vector<int>>& combinations, vector<int>& current_combination, int start, int n, int k) {
         if (k == 0) {
             combinations.push_back(current_combination);
             return;
