@@ -17,25 +17,38 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        unordered_map<Node*, Node*> hash;
-        Node* temp = head;
-        while(temp)
+        Node* iter = head, *front = head;
+        
+        while(iter != NULL)
         {
-            Node* newNode = new Node(temp->val);
-            hash[temp] = newNode;
-            temp = temp->next;
+            front = iter->next;
+            Node* copy = new Node(iter->val);
+            iter->next = copy;
+            copy->next = front;
+            iter = front;
         }
 
-        temp = head;
+        iter = head;
 
-        while(temp)
+        while(iter != NULL)
         {
-            Node* node = hash[temp];
-            node->next = (temp->next != NULL) ? hash[temp->next]:NULL;
-            node->random = (temp->random != NULL) ? hash[temp->random]:NULL;
-            temp = temp->next;
+            iter->next->random = iter->random != NULL ? iter->random->next : NULL;
+            iter = iter->next->next;
         }
 
-        return hash[head];
+        iter = head;
+        Node* res = new Node(0);
+        Node* temp = res;
+
+        while(iter != NULL)
+        {
+            front = iter->next->next;
+            temp->next = iter->next;
+            iter->next = front;
+            temp = temp->next;
+            iter = iter->next;
+        }
+
+        return res->next;
     }
 };
