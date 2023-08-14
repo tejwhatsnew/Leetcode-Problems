@@ -5,7 +5,7 @@ public:
         if(n == 0) return nums[0];
 
         sort(nums.begin(), nums.end());
-
-        return nums[n-k+1];
+        n = n - k + 1;
+        return nums[n];
     }
 };
