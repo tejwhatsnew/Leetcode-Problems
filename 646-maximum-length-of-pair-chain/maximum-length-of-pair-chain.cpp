@@ -5,7 +5,7 @@ public:
         int count = 1;
         sort(pairs.begin(), pairs.end());
 
-        int in = 0, con = 1;
+        int in = 0;
         for(int i = 1; i < pairs.size(); i++)
         {
             if(pairs[i][0] > pairs[in][1])
