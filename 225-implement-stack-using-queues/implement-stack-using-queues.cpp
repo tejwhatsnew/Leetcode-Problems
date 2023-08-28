@@ -6,15 +6,13 @@ public:
     }
     
     void push(int x) {
-        queue<int> q1;
-        q1.push(x);
-        while(!q.empty())
+        int s = q.size();
+        q.push(x);
+        for(int i = 0; i < s; i++)
         {
-            q1.push(q.front());
-            cout<<q.front();
+            q.push(top());
             q.pop();
         }
-        swap(q,q1);
     }
     
     int pop() {
