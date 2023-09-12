@@ -10,13 +10,13 @@ public:
         int res = 0;
         for(auto& i : count)
         {
-            // int f = i.second;
-            while(i.second > 0 && fset.count(i.second))
+            int f = i.second;
+            while(f > 0 && fset.count(f))
             {
-                i.second--;
+                f--;
                 res++;
             }
-            fset.insert(i.second);
+            fset.insert(f);
         }
         return res;
     }
